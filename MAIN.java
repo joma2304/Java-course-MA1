@@ -7,8 +7,8 @@ public class Main {
     public static final int DICE_MAX_NR = 3;
     public static final int POINTS_TO_WIN = 12;
     public static final int DICE_SIDES = 6;
-    public static final String WELCOME_MESSAGE = "Welcome to dice game 12. You must roll 1-3 dice and try to get the sum of 12 ... \n";
-    public static final String ENTER_MESSAGE = "Enter which dice you want to roll [1,2,3] (exit with q): ";
+    public static final String WELCOME_MESSAGE = "Welcome to dice game 12. You must roll 1-3 dice and try to get the sum of 12 ...\n";
+    public static final String ENTER_MESSAGE = "Enter which dice you want to roll [1,2,3] (exit with q):";
     public static final String ERROR_MESSAGE = "Sorry, that is an invalid entry. Try again. Valid entries are 1, 2, 3, and q\n";
     public static final String REPETETIVE_NR_MESSAGE = "Sorry, you have already rolled that dice. Try again";
 
@@ -66,7 +66,7 @@ public class Main {
             //KOlla om vinst eller förlust eller inget där av
 
                 //Vid varken förlust eller vinst
-                if (sumOfDices < POINTS_TO_WIN) {
+                if (dice1 != 0 && dice2 != 0 && dice3 != 0 && sumOfDices < POINTS_TO_WIN) {
                     System.out.println(dice1 + " " + dice2 + " " + dice3 + " sum: " + sumOfDices + " #win: " + nrOfWins + " #loss: " + nrOfLoses);
                     System.out.println("You neither won nor lost the game.");
                     //Ny runda
