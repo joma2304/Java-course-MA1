@@ -34,77 +34,96 @@ public class Main {
 
         while (play) {
             System.out.print(ENTER_MESSAGE);
+
             if (playerInput.hasNextInt()) {
                 number = playerInput.nextInt();
+
                 if (number >= DICE_MIN_NR && number <= DICE_MAX_NR) {
+
                     switch (number) {
-            case 1:
-                if (dice1 != 0) {
-                    System.out.println(REPETETIVE_NR_MESSAGE);
-                } else {
-                    dice1 = (int) (Math.random() * DICE_SIDES) + 1;
-                }
-                break;
+                        case 1:
+                            if (dice1 != 0) {
+                                System.out.println(REPETETIVE_NR_MESSAGE);
+                            } else {
+                                dice1 = (int) (Math.random() * DICE_SIDES) + 1;
+                            }
+                            break;
 
-            case 2:
-                if (dice2 != 0) {
-                    System.out.println(REPETETIVE_NR_MESSAGE);
-                } else {
-                    dice2 = (int) (Math.random() * DICE_SIDES) + 1;
-                }
-                break;
+                        case 2:
+                            if (dice2 != 0) {
+                                System.out.println(REPETETIVE_NR_MESSAGE);
+                            } else {
+                                dice2 = (int) (Math.random() * DICE_SIDES) + 1;
+                            }
+                            break;
 
-            case 3:
-                if (dice3 != 0) {
-                    System.out.println(REPETETIVE_NR_MESSAGE);
-                } else {
-                    dice3 = (int) (Math.random() * DICE_SIDES) + 1;
-                }
-                break;
-        }
-            sumOfDices = dice1 + dice2 + dice3;
-            //KOlla om vinst eller förlust eller inget där av
-
-                //Vid varken förlust eller vinst
-                if (dice1 != 0 && dice2 != 0 && dice3 != 0 && sumOfDices < POINTS_TO_WIN) {
-                    System.out.println(dice1 + " " + dice2 + " " + dice3 + " sum: " + sumOfDices + " #win: " + nrOfWins + " #loss: " + nrOfLoses);
-                    System.out.println("You neither won nor lost the game.");
-                    //Ny runda
-                    dice1 = dice2 = dice3 = 0;
-                    sumOfDices = 0;
-
-                    System.out.println("\nNext round!");
-            }
-                //Vid vinst
-                else if (sumOfDices == POINTS_TO_WIN) {
-                    nrOfWins ++;
-                    System.out.println(dice1 + " " + dice2 + " " + dice3 + " sum: " + sumOfDices + " #win: " + nrOfWins + " #loss: " + nrOfLoses);
-                    System.out.println("You won!!");
-                    //Ny runda
-                    dice1 = dice2 = dice3 = 0;
-                    sumOfDices = 0;
-
-                    System.out.println("\nNext round!");
-                }
-                 
-                //Vid förlust
-                else if (dice1 != 0 && dice2 != 0 && dice3 != 0 && sumOfDices > POINTS_TO_WIN) {
-                nrOfLoses++;
-                System.out.println(dice1 + " " + dice2 + " " + dice3 + " sum: " + sumOfDices + " #win: " + nrOfWins + " #loss: " + nrOfLoses);
-                System.err.println("You lost!!");
-                //Ny runda
-                dice1 = dice2 = dice3 = 0;
-                sumOfDices = 0;
-
-                System.out.println("\nNext round!");
-            } else {
-                System.out.println(dice1 + " " + dice2 + " " + dice3 + " sum: " + sumOfDices + " #win: " + nrOfWins + " #loss: " + nrOfLoses);
+                        case 3:
+                            if (dice3 != 0) {
+                                System.out.println(REPETETIVE_NR_MESSAGE);
+                            } else {
+                                dice3 = (int) (Math.random() * DICE_SIDES) + 1;
+                            }
+                            break;
+                            
+                        default:
+                            System.out.println(ERROR_MESSAGE);
+                            break;
                     }
-                } else {
+
+                    sumOfDices = dice1 + dice2 + dice3;
+
+                    // Koll om vinst/förlust eller inget därav
+                    if (dice1 != 0 && dice2 != 0 && dice3 != 0 && sumOfDices < POINTS_TO_WIN) {
+                        System.out.println(dice1 + " " + dice2 + " " + dice3 +
+                                " sum: " + sumOfDices +
+                                " #win: " + nrOfWins +
+                                " #loss: " + nrOfLoses);
+                        System.out.println("You neither won nor lost the game.");
+                        // Ny runda
+                        dice1 = 0;
+                        dice2 = 0;
+                        dice3 = 0;
+                        sumOfDices = 0;
+                        System.out.println("\nNext round!");
+                    } else if (sumOfDices == POINTS_TO_WIN) { // Vid vinst
+                        nrOfWins++;
+                        System.out.println(dice1 + " " + dice2 + " " + dice3 +
+                                " sum: " + sumOfDices +
+                                " #win: " + nrOfWins +
+                                " #loss: " + nrOfLoses);
+                        System.out.println("You won!!");
+                        // Ny runda
+                        dice1 = 0;
+                        dice2 = 0;
+                        dice3 = 0;
+                        sumOfDices = 0;
+                        System.out.println("\nNext round!");
+                    } else if (dice1 != 0 && dice2 != 0 && dice3 != 0 && sumOfDices > POINTS_TO_WIN) { // Vid förlust
+                        nrOfLoses++;
+                        System.out.println(dice1 + " " + dice2 + " " + dice3 +
+                                " sum: " + sumOfDices +
+                                " #win: " + nrOfWins +
+                                " #loss: " + nrOfLoses);
+                        System.out.println("You lost!!");
+                        // Ny runda
+                        dice1 = 0;
+                        dice2 = 0;
+                        dice3 = 0;
+                        sumOfDices = 0;
+                        System.out.println("\nNext round!");
+                    } else { // skriv ut nuvarande tärningsstatus
+                        System.out.println(dice1 + " " + dice2 + " " + dice3 +
+                                " sum: " + sumOfDices +
+                                " #win: " + nrOfWins +
+                                " #loss: " + nrOfLoses);
+                    }
+
+                } else { // Ogiltigt tal
                     System.out.println(ERROR_MESSAGE);
                 }
-            } else if (playerInput.hasNext()) {
-                String inString = playerInput.nextLine();
+
+            } else { // Om input inte är en siffra
+                String inString = playerInput.next();
                 if (inString.equalsIgnoreCase("q")) {
                     System.out.println("#win: " + nrOfWins + " #loss: " + nrOfLoses);
                     System.out.println("Game over!");
